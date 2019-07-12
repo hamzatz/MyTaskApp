@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.e.mytaskapp.ClickListener;
 import com.e.mytaskapp.R;
 import com.e.mytaskapp.models.Task;
 
@@ -17,12 +18,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
     List<Task> list;
     private ClickListener clickListener;
 
-    public interface ClickListener{
-
-        void OnNoteClick (int pos);
-        void OnNoteLong(int pos);
-
-    }
 
 
     public MyAdapter(List<Task> arrayList) {
@@ -51,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
     }
 
 
-    public void setClickListener(ClickListener clickListener) {
+    public void setClickListener  (ClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -73,13 +68,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>  {
                 @Override
                 public void onClick(View v) {
 
-                    clickListener.OnNoteClick(getAdapterPosition());
+                    clickListener.onItemClick(getAdapterPosition());
 
                 }
-            }); itemView.setOnClickListener(new View.OnClickListener() {
+            }); itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
-                public void onClick(View v) {
-                    clickListener.OnNoteLong(getAdapterPosition());
+                public boolean onLongClick(View v) {
+                    clickListener.onItemLongClick(getAdapterPosition());
+                    return true;
                 }
             });
 

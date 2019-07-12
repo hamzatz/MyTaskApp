@@ -5,18 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/blik"
     tools:context=".Activity.FormActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="60dp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:text="Notes"/>
 
     <EditText
         android:id="@+id/edit_title"
+        android:textColorHint="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_edittext"
+        android:backgroundTint="@color/colorWhite"
         android:hint="Title" />
 
     <EditText
         android:id="@+id/edit_description"
+        android:textColorHint="@color/colorAccent"
         android:layout_width="match_parent"
+        android:background="@drawable/bg_edittext"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:backgroundTint="@color/colorWhite"
         android:hint="Description" />
 
     <LinearLayout
@@ -27,14 +48,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_edittext"
+            android:backgroundTint="@color/colorPrimary"
             android:onClick="onClickCancel"
+            android:textColor="@color/colorWhite"
             android:text="Отмена" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_edittext"
+            android:backgroundTint="@color/colorPrimary"
             android:onClick="OnClickSave"
+            android:textColor="@color/colorWhite"
             android:text="Сохранить" />
 
 

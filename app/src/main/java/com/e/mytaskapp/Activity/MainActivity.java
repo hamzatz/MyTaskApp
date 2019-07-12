@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.e.mytaskapp.App;
+import com.e.mytaskapp.ClickListener;
 import com.e.mytaskapp.R;
 import com.e.mytaskapp.adapter.MyAdapter;
 import com.e.mytaskapp.models.Task;
@@ -116,9 +117,10 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        adapter.setClickListener(new MyAdapter.ClickListener() {
+        adapter.setClickListener(new ClickListener() {
             @Override
-            public void OnNoteClick(int pos) {
+            public void onItemClick(int pos) {
+
 
                 Task task = list.get(pos);
                 Intent intent = new Intent(MainActivity.this, FormActivity.class);
@@ -128,18 +130,18 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void OnNoteLong(int pos) {
-
-                Task task = list.get(pos);
+            public void onItemLongClick(int position) {
+                Task task = list.get(position);
                 showAlert(task);
-
             }
+
+
         });
     }
 
         private void showAlert(final Task task) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Вы хотите удалить запись " + task.getTitle() + "?");
+            builder.setMessage("Вы хотите удалить запись \"" + task.getTitle() + "\"?");
             builder.setNegativeButton("Отмена", null);
             builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 @Override
@@ -210,22 +212,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 50) {
-            if (resultCode == RESULT_OK) {
-                App.getInstance().getDatabase().taskDao().getAll().observe(this,
-                        new Observer<List<Task>>() {
-                            @Override
-                            public void onChanged(@Nullable List<Task> task) {
-                                list.clear();
-                                list.addAll(task);
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
 
-
-            }
-        }
-    }
 }

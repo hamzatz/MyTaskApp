@@ -14,7 +14,7 @@ import java.util.List;
     public interface TaskDao {
 
 
-        @Query("SELECT * FROM Task ")
+        @Query("SELECT * FROM Task ORDER by id DESC")
         LiveData<List<Task>> getAll();
 
         @Query("SELECT * FROM Task WHERE id = :id")

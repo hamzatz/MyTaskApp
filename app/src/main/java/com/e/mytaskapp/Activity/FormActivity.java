@@ -66,7 +66,7 @@ public class FormActivity extends AppCompatActivity {
             task.setTitle(title);
             task.setDescription(description);
             App.getInstance().getDatabase().taskDao().insert(task);
-            setResult(RESULT_OK);
+
 
         }
         if (title.matches("")) {
